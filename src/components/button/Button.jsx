@@ -10,6 +10,17 @@ const ButtonContainer = styled.button`
   transition: all 0.3s ease;
   cursor: pointer;
   margin-right: 0.5rem;
+  height: 40px;
+  &.btn-large {
+    height: 60px;
+  }
+  &.btn-delete {
+    background: red;
+    border-color: red;
+    &:hover {
+      background: red;
+    }
+  }
   &:hover {
     background: #3119ee;
   }
@@ -18,8 +29,12 @@ const ButtonContainer = styled.button`
   }
 `;
 
-const Button = ({ text, handler }) => {
-  return <ButtonContainer onClick={handler}>{text}</ButtonContainer>;
+const Button = ({ text, handler, className }) => {
+  return (
+    <ButtonContainer onClick={handler} className={className}>
+      {text}
+    </ButtonContainer>
+  );
 };
 
 export default Button;

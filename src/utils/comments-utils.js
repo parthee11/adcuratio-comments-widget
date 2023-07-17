@@ -2,10 +2,11 @@ import { uid } from "uid";
 
 export const addComments = (list, commentId, comment) => {
   if (list.id === commentId) {
-    list.replies.push({
+    list.replies.unshift({
       id: uid(),
       text: comment,
       replies: [],
+      createdOn: new Date().toLocaleDateString(),
     });
     return list;
   }

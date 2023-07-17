@@ -5,9 +5,8 @@ const InputContainer = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 0.5rem;
-  margin-bottom: 0.25rem;
+  margin-bottom: 1rem;
   padding: 0.25rem;
-  border: 1px solid #333;
   width: 500px;
   border-radius: 4px;
   div {
@@ -16,16 +15,21 @@ const InputContainer = styled.div`
     }
     input {
       box-sizing: border-box;
-      padding: 0.5rem;
-      border: 1px solid #000;
+      padding: 0.5rem 1rem;
+      border: none;
       border-radius: 4px;
+      height: 40px;
       width: 100%;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    }
+    .input-large {
+      height: 60px;
     }
     .error {
       color: red;
       font-size: 14px;
       margin-left: 0.5rem;
-      margin-top: 0.25rem;
+      margin-top: 0.5rem;
       display: inline-block;
     }
   }
@@ -37,6 +41,7 @@ const InputForm = ({
   placeholder,
   children,
   error,
+  className,
 }) => {
   return (
     <InputContainer>
@@ -47,6 +52,7 @@ const InputForm = ({
           value={value}
           onChange={onChangeHandler}
           placeholder={placeholder}
+          className={className}
         />
         {error && <span className="error">{error}</span>}
       </div>

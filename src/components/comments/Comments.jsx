@@ -8,14 +8,20 @@ const RepliesContainer = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 0.25rem;
-  border: 1px solid #333;
-  margin-bottom: 0.25rem;
+  border-bottom: 1px dashed #ccc;
   width: 500px;
-  border-radius: 4px;
+  margin-bottom: 1rem;
   span {
     display: inline-block;
     width: 250px;
     white-space: text-wrap;
+    &.time {
+      font-size: 12px;
+      opacity: 0.4;
+    }
+  }
+  button {
+    height: 40px;
   }
 `;
 
@@ -81,14 +87,21 @@ const Comments = ({
     <div style={{ paddingLeft: "1rem" }}>
       <div>
         {comments.id === "start" ? (
-          <InputForm
-            value={commentText}
-            onChangeHandler={(e) => setCommentText(e.target.value)}
-            placeholder="Enter a comment..."
-            error={commentErr}
-          >
-            <Button text="Comment" handler={onCommentAdd} />
-          </InputForm>
+          <div style={{ marginBottom: "1.5rem" }}>
+            <InputForm
+              value={commentText}
+              onChangeHandler={(e) => setCommentText(e.target.value)}
+              placeholder="Enter a comment..."
+              error={commentErr}
+              className="input-large"
+            >
+              <Button
+                className="btn-large"
+                text="Comment"
+                handler={onCommentAdd}
+              />
+            </InputForm>
+          </div>
         ) : editMode ? (
           <InputForm
             value={editText}
@@ -107,11 +120,18 @@ const Comments = ({
           </InputForm>
         ) : (
           <RepliesContainer>
-            <span>{comments.text}</span>
+            <span>
+              <span>{comments.text}</span>
+              <span className="time">Created on: {comments.createdOn}</span>
+            </span>
             <div>
-              <Button text="Edit" handler={onEditComment} />
               <Button text="Reply" handler={() => setReplyMode(true)} />
-              <Button text="Delete" handler={onDeleteComment} />
+              <Button text="Edit" handler={onEditComment} />
+              <Button
+                text="Delete"
+                className="btn-delete"
+                handler={onDeleteComment}
+              />
             </div>
           </RepliesContainer>
         )}
